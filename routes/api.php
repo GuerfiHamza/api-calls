@@ -2,17 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LogsController;
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
+use App\Http\Controllers\AgentController;
 
-Route::get('/logs', [LogsController::class, 'index']);
-Route::get('/logs/{id}', [LogsController::class, 'show']);
+Route::get('/agents', [AgentController::class, 'index']); // List all agents
+Route::get('/agents/{agent}/messages', [AgentController::class, 'messages']); // List messages for a specific agent
