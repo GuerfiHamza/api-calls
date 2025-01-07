@@ -1,0 +1,11 @@
+!.gitkeep
+
+/vendor
+composer.phar
+composer.lock
+.DS_Store
+*.cache
+.idea
+.phpunit.result.cache
+phpunit.xml
+temp/
