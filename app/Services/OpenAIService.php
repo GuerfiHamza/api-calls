@@ -1,26 +1,27 @@
 <?php
+
 namespace App\Services;
 
 use App\Models\Log;
-use App\Services\TwitterService;
+use App\Events\MessageCreated;
 use OpenAI;
 use Illuminate\Support\Str;
-
+use Ably\AblyRest;
+use App\Services\TwitterService;
 class OpenAIService
 {
     protected $client;
-    protected $twitterService;
 
-    public function __construct(TwitterService $twitterService)
+    public function __construct()
     {
         $this->client = OpenAI::client(env('OPENAI_API_KEY'));
-        $this->twitterService = $twitterService;
+        $this->twitterService = new TwitterService();
     }
 
     public function generateMessage(Log $log)
     {
         $agent = $log->agent;
-
+        $agentId = $log->agent->id;
         // Select a random system message
         $systemMessages = $agent->system_messages;
         $systemMessage = $systemMessages[array_rand($systemMessages)];
@@ -36,25 +37,40 @@ class OpenAIService
 
         // Save the message
         $message = $log->messages()->create([
-            'content' => trim($aiMessage),
+            'log_id' => $log->id,
+            'content' =>$aiMessage,
             'created_at' => now(),
         ]);
-
-        // Prepare tweet content
+    
+        $client = new AblyRest(env('ABLY_API_KEY'));   
+        $channel = $client->channels->get('messages.agent.' . $agentId);
+        $channel->publish('message.created', 
+            [
+                'id' => $message->id,
+                'message' => $message->content,
+                'log_id' => $message->log_id,
+                'created_at' => $message->created_at,
+            ]
+        );
+        // Broadcast the new message
+        // Commenting out Twitter for now
+    
         $tweetContent = sprintf(
             "Agent: %s\nLog: %s\nMessage: %s\n\nView more: %s",
             $agent->name,
             $log->title,
             Str::limit($message->content, 180),
-            url("/logs/{$log->id}")
+            sprintf("https://infinitynet.cloud/agents/%d", $log->id)
         );
 
-        // Post a tweet
+        // Post a tweet with a wait time
         try {
             $this->twitterService->postTweet($tweetContent);
+            sleep(250); // Wait for 25 seconds to avoid rate limiting
         } catch (\Exception $e) {
             \Log::error('Failed to post tweet: ' . $e->getMessage());
         }
+        
 
         return $aiMessage;
     }

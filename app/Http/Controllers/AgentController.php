@@ -23,15 +23,19 @@ class AgentController extends Controller
             return response()->json(['error' => 'No log found for this agent.'], 404);
         }
 
-        $messages = $log->messages()->latest()->get(['id', 'content', 'created_at']);
+        $messages = $log->messages()->orderBy('created_at', 'asc')->get(['id', 'content', 'created_at']);
         return response()->json([
             'agent' => [
-                'id' => $agent->id,
-                'name' => $agent->name,
-                'description' => $agent->description,
-                'image' => $agent->image,
-            ],
-            'messages' => $messages,
-        ]);
+            'id' => $agent->id,
+            'name' => $agent->name, // Agent name
+            'description' => $agent->description,
+            'image' => $agent->image,
+        ],
+        'log' => [
+            'id' => $log->id,
+            'title' => $log->title, // Log title
+        ],
+        'messages' => $messages,
+    ]);
     }
 }

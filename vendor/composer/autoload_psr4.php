@@ -74,6 +74,7 @@ return array(
     'NunoMaduro\\Collision\\' => array($vendorDir . '/nunomaduro/collision/src'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'Mockery\\' => array($vendorDir . '/mockery/mockery/library/Mockery'),
+    'MessagePack\\' => array($vendorDir . '/rybakit/msgpack/src'),
     'League\\OAuth2\\Client\\' => array($vendorDir . '/league/oauth2-client/src'),
     'League\\MimeTypeDetection\\' => array($vendorDir . '/league/mime-type-detection/src'),
     'League\\Flysystem\\Local\\' => array($vendorDir . '/league/flysystem-local'),
@@ -125,4 +126,7 @@ return array(
     'Atymic\\Twitter\\' => array($vendorDir . '/atymic/twitter/src'),
     'Arrilot\\Widgets\\' => array($vendorDir . '/arrilot/laravel-widgets/src'),
     'App\\' => array($baseDir . '/app', $vendorDir . '/laravel/pint/app'),
+    'Ably\\Laravel\\' => array($vendorDir . '/ably/ably-php-laravel/src'),
+    'Ably\\LaravelBroadcaster\\' => array($vendorDir . '/ably/laravel-broadcaster/src'),
+    'Ably\\' => array($vendorDir . '/ably/ably-php/src'),
 );

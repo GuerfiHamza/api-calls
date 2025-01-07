@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '97aeb41912242f2cc69e4bf18491ff8b5929c20f',
+        'reference' => '5cd93e6f298d2587e2bd733ba550f01f4e63b6e9',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(
@@ -12,6 +12,33 @@
         'dev' => true,
     ),
     'versions' => array(
+        'ably/ably-php' => array(
+            'pretty_version' => '1.1.10',
+            'version' => '1.1.10.0',
+            'reference' => '2a54c9e3395d5b8a480f02d670f6f3c3f5464411',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../ably/ably-php',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'ably/ably-php-laravel' => array(
+            'pretty_version' => '1.0.8',
+            'version' => '1.0.8.0',
+            'reference' => '825ec91eb889655eafd52e1d4551fc20b4bdc6a9',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../ably/ably-php-laravel',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'ably/laravel-broadcaster' => array(
+            'pretty_version' => 'v1.0.6',
+            'version' => '1.0.6.0',
+            'reference' => '082d4e01b81048d33e8b2d04d998d6e70f3bb057',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../ably/laravel-broadcaster',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'arrilot/laravel-widgets' => array(
             'pretty_version' => '3.14.0',
             'version' => '3.14.0.0',
@@ -510,7 +537,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '97aeb41912242f2cc69e4bf18491ff8b5929c20f',
+            'reference' => '5cd93e6f298d2587e2bd733ba550f01f4e63b6e9',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(
@@ -1125,6 +1152,15 @@
             'replaced' => array(
                 0 => '4.7.6',
             ),
+        ),
+        'rybakit/msgpack' => array(
+            'pretty_version' => 'v0.9.1',
+            'version' => '0.9.1.0',
+            'reference' => 'fc6bc45e92274e78c32d0a86f2e2cc1f8b5e017b',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../rybakit/msgpack',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'sebastian/cli-parser' => array(
             'pretty_version' => '2.0.1',
